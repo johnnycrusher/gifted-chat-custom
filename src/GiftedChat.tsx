@@ -30,7 +30,7 @@ import {
   TIME_FORMAT,
   DATE_FORMAT,
 } from './Constant'
-import { IMessage, User } from './types'
+import { IMessage, User, Reply } from './types'
 
 const GiftedActionSheet = ActionSheet as any
 
@@ -146,6 +146,7 @@ export interface GiftedChatProps<TMessage extends IMessage = IMessage> {
   onInputTextChanged?(text: string): void
   /* Custom parse patterns for react-native-parsed-text used to linking message content (like URLs and phone numbers) */
   parsePatterns?(): React.ReactNode
+  onQuickReply?(reply: Reply): void
 }
 
 interface GiftedChatState {

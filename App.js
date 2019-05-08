@@ -1,19 +1,14 @@
 import { AppLoading, Asset, Linking } from 'expo'
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Bubble, GiftedChat, SystemMessage } from 'react-native-gifted-chat'
-import Sentry from 'sentry-expo'
+import { Bubble, GiftedChat, SystemMessage } from './src/'
 
-import AccessoryBar from './AccessoryBar'
-import CustomActions from './CustomActions'
-import CustomView from './CustomView'
-import NavBar from './NavBar'
-import messagesData from './data/messages'
-import earlierMessages from './data/earlierMessages'
-
-Sentry.config(
-  'https://2a164b1e89424a5aafc186da811308cb@sentry.io/276804',
-).install()
+import AccessoryBar from './example-expo/AccessoryBar'
+import CustomActions from './example-expo/CustomActions'
+import CustomView from './example-expo/CustomView'
+import NavBar from './example-expo/NavBar'
+import messagesData from './example-expo/data/messages'
+import earlierMessages from './example-expo/data/earlierMessages'
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -188,6 +183,18 @@ export default class App extends Component {
     return null
   }
 
+  onQuickReply = reply => {
+    const createdAt = new Date()
+    this.onSend([
+      {
+        createdAt,
+        _id: Math.round(Math.random() * 1000000),
+        text: reply.title,
+        user,
+      },
+    ])
+  }
+
   render() {
     if (!this.state.appIsReady) {
       return <AppLoading />
@@ -208,6 +215,7 @@ export default class App extends Component {
           isLoadingEarlier={this.state.isLoadingEarlier}
           parsePatterns={this.parsePatterns}
           user={user}
+          onQuickReply={this.onQuickReply}
           keyboardShouldPersistTaps='never'
           renderAccessory={this.renderAccessory}
           renderActions={this.renderCustomActions}

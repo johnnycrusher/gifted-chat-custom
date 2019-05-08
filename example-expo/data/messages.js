@@ -10,13 +10,14 @@ export default [
   },
   {
     _id: Math.round(Math.random() * 1000000),
-    text: '',
+    text: 'Paris',
     createdAt: new Date(),
     user: {
       _id: 2,
       name: 'React Native',
     },
-    image: 'https://lh3.googleusercontent.com/-uXipYA5hSKc/VVWKiFIvo-I/AAAAAAAAAhQ/vkjLyZNEzUA/w800-h800/1.jpg',
+    image:
+      'https://lh3.googleusercontent.com/-uXipYA5hSKc/VVWKiFIvo-I/AAAAAAAAAhQ/vkjLyZNEzUA/w800-h800/1.jpg',
     sent: true,
     received: true,
   },
@@ -79,4 +80,30 @@ export default [
     createdAt: new Date(),
     system: true,
   },
-];
+  {
+    _id: Math.round(Math.random() * 1000000),
+    text: 'This is a quick reply. Do you love Gifted Chat?',
+    createdAt: new Date(),
+    quickReplies: {
+      type: 'radio', // or 'checkbox',
+      values: [
+        {
+          title: '😋 Yes',
+          value: 'yes',
+        },
+        {
+          title: '📷 Yes, let me show you with a picture!',
+          value: 'yes_picture',
+        },
+        {
+          title: '😞 Nope. What?',
+          value: 'no',
+        },
+      ],
+    },
+    user: {
+      _id: 2,
+      name: 'React Native',
+    },
+  },
+]
